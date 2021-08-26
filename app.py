@@ -1,5 +1,3 @@
-
-Save New Duplicate & Edit Just Text Twitter
 from flask import Flask,jsonify
 
 app = Flask(__name__)
