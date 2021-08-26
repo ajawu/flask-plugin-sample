@@ -1,3 +1,4 @@
+import json
 
 from flask import request, jsonify
 from .schema import SampleObjectSchema
@@ -17,7 +18,7 @@ def home():
 def create_todo_api():
     global pk
     if request.method == 'POST':
-        todo = request.data.decode()
+        todo = json.loads(request.data.decode())
         database[str(pk+1)] = todo
         pk = pk + 1
         return jsonify(todo)
@@ -41,4 +42,12 @@ def delete_todo_api(pk):
     if pk and pk in list(database.keys()):
         del database[str(pk)]
         return jsonify({}), 204
+    return jsonify({"error": "not found"}), 404
+
+
+def update_todo_api(pk):
+    if pk and pk in list(database.keys()):
+        todo = json.loads(request.data.decode())
+        database[str(pk)].update(todo)
+        return jsonify(database[str(pk)])
     return jsonify({"error": "not found"}), 404
