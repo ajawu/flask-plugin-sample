@@ -1,3 +1,5 @@
+
+Save New Duplicate & Edit Just Text Twitter
 from flask import Flask,jsonify
 
 app = Flask(__name__)
@@ -49,11 +51,11 @@ def update_task(task_id):
         abort(400)
     if 'description' in request.json and type(request.json['description']) is not unicode:
         abort(400)
-    if 'done' in request.json and type(request.json['done']) is not bool:
+    if 'status' in request.json and type(request.json['status']) is not bool:
         abort(400)
     task[0]['title'] = request.json.get('title', task[0]['title'])
     task[0]['description'] = request.json.get('description', task[0]['description'])
-    task[0]['done'] = request.json.get('done', task[0]['done'])
+    task[0]['status'] = request.json.get('status', task[0]['status'])
     return jsonify({'task': task[0]})
 
 @app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
@@ -66,4 +68,3 @@ def delete_task(task_id):
     
 if __name__ == '__main__':
     app.run(debug=True)
-
