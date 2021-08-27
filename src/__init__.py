@@ -14,6 +14,9 @@ def init_app():
         from src.plugin_sample import plugin_bp
         app.register_blueprint(plugin_bp)
 
+        from src.todo import todo_bp
+        app.register_blueprint(todo_bp)
+
         # Error Handlers
         @app.errorhandler(ValidationError)
         def handle_marshmallow_validation_errors(err):
