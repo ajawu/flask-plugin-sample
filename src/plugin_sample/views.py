@@ -1,5 +1,4 @@
-
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from .schema import SampleObjectSchema
 
 
@@ -11,7 +10,7 @@ def home():
     # Validate input with marshmallow
     if request.method == 'POST':
         schema = SampleObjectSchema().load(request.data)
-    return 'Hello World'
+    return render_template('plugin/index.html')
 
 
 def create_todo_api():
