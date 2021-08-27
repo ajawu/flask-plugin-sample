@@ -1,7 +1,9 @@
 from marshmallow import Schema, fields
 
 
-class SampleObjectSchema(Schema):
-    name = fields.Str()
-    email = fields.Email()
-    message = fields.Str()
+class TodoSchema(Schema):
+    id = fields.Int()
+    title = fields.Str()
+    description = fields.Str()
+    is_completed = fields.Bool()
+    created_at = fields.DateTime()
